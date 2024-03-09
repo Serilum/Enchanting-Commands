@@ -2,7 +2,7 @@ package com.natamus.enchantingcommands.cmds;
 
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.IntegerArgumentType;
-import com.natamus.collective.functions.StringFunctions;
+import com.natamus.collective.functions.MessageFunctions;
 import com.natamus.enchantingcommands.config.ConfigHandler;
 import com.natamus.enchantingcommands.util.Util;
 import net.minecraft.ChatFormatting;
@@ -31,8 +31,8 @@ public class CommandEc {
 				CommandSourceStack source = command.getSource();
 
 				String joined = String.join(", ", Util.getEnchantmentKeys());
-				StringFunctions.sendMessage(source, "--- Enchanting Commands List ---", ChatFormatting.DARK_GREEN, true);
-				StringFunctions.sendMessage(source, " " + joined, ChatFormatting.DARK_GREEN);
+				MessageFunctions.sendMessage(source, "--- Enchanting Commands List ---", ChatFormatting.DARK_GREEN, true);
+				MessageFunctions.sendMessage(source, " " + joined, ChatFormatting.DARK_GREEN);
 				return 1;
 			}))
 			.then(Commands.literal("enchant")
@@ -42,7 +42,7 @@ public class CommandEc {
 				CommandSourceStack source = command.getSource();
 				Entity entity = source.getEntity();
 				if (!(entity instanceof ServerPlayer)) {
-					StringFunctions.sendMessage(source, "This command can only be executed as a player.", ChatFormatting.RED);
+					MessageFunctions.sendMessage(source, "This command can only be executed as a player.", ChatFormatting.RED);
 					return 1;
 				}
 
@@ -53,7 +53,7 @@ public class CommandEc {
 				int level = IntegerArgumentType.getInteger(command, "level");
 
 				if (!player.hasItemInSlot(EquipmentSlot.MAINHAND)) {
-					StringFunctions.sendMessage(player, "You do not have an enchantable item in your main hand.", ChatFormatting.RED);
+					MessageFunctions.sendMessage(player, "You do not have an enchantable item in your main hand.", ChatFormatting.RED);
 					return 0;
 				}
 
@@ -73,13 +73,13 @@ public class CommandEc {
 				String enchantmentname = enchantment.getDescriptionId().replace("enchantment.", "");
 				if (level != 0) {
 					held.enchant(enchantment, level);
-					StringFunctions.sendMessage(player, "The enchantment '" + enchantmentname + "' has been added to the item with a level of " + level + ".", ChatFormatting.DARK_GREEN);
+					MessageFunctions.sendMessage(player, "The enchantment '" + enchantmentname + "' has been added to the item with a level of " + level + ".", ChatFormatting.DARK_GREEN);
 				}
 				else if (removed) {
-					StringFunctions.sendMessage(player, "The enchantment '" + enchantmentname + "' has been removed from the item.", ChatFormatting.DARK_GREEN);
+					MessageFunctions.sendMessage(player, "The enchantment '" + enchantmentname + "' has been removed from the item.", ChatFormatting.DARK_GREEN);
 				}
 				else {
-					StringFunctions.sendMessage(player, "The enchantment '" + enchantmentname + "' does not exist on the item.", ChatFormatting.RED);
+					MessageFunctions.sendMessage(player, "The enchantment '" + enchantmentname + "' does not exist on the item.", ChatFormatting.RED);
 				}
 				return 1;
 			}))))
@@ -87,14 +87,14 @@ public class CommandEc {
 	}
 
 	public static void sendUsage(CommandSourceStack source) {
-		StringFunctions.sendMessage(source, "--- Enchanting Commands Usage ---", ChatFormatting.DARK_GREEN, true);
-		StringFunctions.sendMessage(source, " /" + ConfigHandler.enchantCommandString + " list", ChatFormatting.DARK_GREEN);
-		StringFunctions.sendMessage(source, " /" + ConfigHandler.enchantCommandString + " enchant <enchant> <lvl>", ChatFormatting.DARK_GREEN);
+		MessageFunctions.sendMessage(source, "--- Enchanting Commands Usage ---", ChatFormatting.DARK_GREEN, true);
+		MessageFunctions.sendMessage(source, " /" + ConfigHandler.enchantCommandString + " list", ChatFormatting.DARK_GREEN);
+		MessageFunctions.sendMessage(source, " /" + ConfigHandler.enchantCommandString + " enchant <enchant> <lvl>", ChatFormatting.DARK_GREEN);
 	}
 
 	public static void sendUsage(Player player) {
-		StringFunctions.sendMessage(player, "--- Enchanting Commands Usage ---", ChatFormatting.DARK_GREEN, true);
-		StringFunctions.sendMessage(player, " /" + ConfigHandler.enchantCommandString + " list", ChatFormatting.DARK_GREEN);
-		StringFunctions.sendMessage(player, " /" + ConfigHandler.enchantCommandString + " enchant <enchant> <lvl>", ChatFormatting.DARK_GREEN);
+		MessageFunctions.sendMessage(player, "--- Enchanting Commands Usage ---", ChatFormatting.DARK_GREEN, true);
+		MessageFunctions.sendMessage(player, " /" + ConfigHandler.enchantCommandString + " list", ChatFormatting.DARK_GREEN);
+		MessageFunctions.sendMessage(player, " /" + ConfigHandler.enchantCommandString + " enchant <enchant> <lvl>", ChatFormatting.DARK_GREEN);
 	}
 }
