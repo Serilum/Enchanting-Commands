@@ -1,4 +1,5 @@
 package com.natamus.enchantingcommands.cmds;
+import com.natamus.enchantingcommands.util.Reference;
 
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.IntegerArgumentType;
@@ -36,7 +37,7 @@ public class CommandEc {
 				CommandSourceStack source = command.getSource();
 
 				String joined = String.join(", ", Util.getEnchantmentKeys(source.getLevel()));
-				MessageFunctions.sendMessage(source, "--- Enchanting Commands List ---", ChatFormatting.DARK_GREEN, true);
+				MessageFunctions.sendTranslatableMessage(source, "collective.enchantingcommands.message.list", true, ChatFormatting.DARK_GREEN, Reference.NAME);
 				MessageFunctions.sendMessage(source, " " + joined, ChatFormatting.DARK_GREEN);
 				return 1;
 			}))
@@ -47,7 +48,7 @@ public class CommandEc {
 				CommandSourceStack source = command.getSource();
 				Entity entity = source.getEntity();
 				if (!(entity instanceof ServerPlayer)) {
-					MessageFunctions.sendMessage(source, "This command can only be executed as a player.", ChatFormatting.RED);
+					MessageFunctions.sendTranslatableMessage(source, "collective.shared.message.playeronly", ChatFormatting.RED);
 					return 1;
 				}
 
@@ -60,7 +61,7 @@ public class CommandEc {
 				int level = IntegerArgumentType.getInteger(command, "level");
 
 				if (!player.hasItemInSlot(EquipmentSlot.MAINHAND)) {
-					MessageFunctions.sendMessage(player, "You do not have an enchantable item in your main hand.", ChatFormatting.RED);
+					MessageFunctions.sendTranslatableMessage(player, "collective.enchantingcommands.message.enchantableitemmain", ChatFormatting.RED);
 					return 0;
 				}
 
@@ -83,13 +84,13 @@ public class CommandEc {
 				String enchantmentname = enchantmentRegistry.getKey(enchantment).getPath();
 				if (level != 0) {
 					held.enchant(enchantmentRegistry.wrapAsHolder(enchantment), level);
-					MessageFunctions.sendMessage(player, "The enchantment '" + enchantmentname + "' has been added to the item with a level of " + level + ".", ChatFormatting.DARK_GREEN);
+					MessageFunctions.sendTranslatableMessage(player, "collective.enchantingcommands.message.enchantmentaddeditem", ChatFormatting.DARK_GREEN, enchantmentname, level);
 				}
 				else if (removed) {
-					MessageFunctions.sendMessage(player, "The enchantment '" + enchantmentname + "' has been removed from the item.", ChatFormatting.DARK_GREEN);
+					MessageFunctions.sendTranslatableMessage(player, "collective.enchantingcommands.message.enchantmentremovedfrom", ChatFormatting.DARK_GREEN, enchantmentname);
 				}
 				else {
-					MessageFunctions.sendMessage(player, "The enchantment '" + enchantmentname + "' does not exist on the item.", ChatFormatting.RED);
+					MessageFunctions.sendTranslatableMessage(player, "collective.enchantingcommands.message.enchantmentexistitem", ChatFormatting.RED, enchantmentname);
 				}
 				return 1;
 			}))))
@@ -97,13 +98,13 @@ public class CommandEc {
 	}
 
 	public static void sendUsage(CommandSourceStack source) {
-		MessageFunctions.sendMessage(source, "--- Enchanting Commands Usage ---", ChatFormatting.DARK_GREEN, true);
+		MessageFunctions.sendTranslatableMessage(source, "collective.enchantingcommands.message.usage", true, ChatFormatting.DARK_GREEN, Reference.NAME);
 		MessageFunctions.sendMessage(source, " /" + ConfigHandler.enchantCommandString + " list", ChatFormatting.DARK_GREEN);
 		MessageFunctions.sendMessage(source, " /" + ConfigHandler.enchantCommandString + " enchant <enchant> <lvl>", ChatFormatting.DARK_GREEN);
 	}
 
 	public static void sendUsage(Player player) {
-		MessageFunctions.sendMessage(player, "--- Enchanting Commands Usage ---", ChatFormatting.DARK_GREEN, true);
+		MessageFunctions.sendTranslatableMessage(player, "collective.enchantingcommands.message.usage", true, ChatFormatting.DARK_GREEN, Reference.NAME);
 		MessageFunctions.sendMessage(player, " /" + ConfigHandler.enchantCommandString + " list", ChatFormatting.DARK_GREEN);
 		MessageFunctions.sendMessage(player, " /" + ConfigHandler.enchantCommandString + " enchant <enchant> <lvl>", ChatFormatting.DARK_GREEN);
 	}
