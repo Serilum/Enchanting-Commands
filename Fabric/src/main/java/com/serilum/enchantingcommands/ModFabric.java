@@ -1,9 +1,9 @@
-package com.natamus.enchantingcommands;
+package com.serilum.enchantingcommands;
 
 import com.natamus.collective.check.RegisterMod;
 import com.natamus.collective.check.ShouldLoadCheck;
-import com.natamus.enchantingcommands.cmds.CommandEc;
-import com.natamus.enchantingcommands.util.Reference;
+import com.serilum.enchantingcommands.cmds.CommandEc;
+import com.serilum.enchantingcommands.util.Reference;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 

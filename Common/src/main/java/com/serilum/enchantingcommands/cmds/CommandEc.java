@@ -1,11 +1,11 @@
-package com.natamus.enchantingcommands.cmds;
-import com.natamus.enchantingcommands.util.Reference;
+package com.serilum.enchantingcommands.cmds;
+import com.serilum.enchantingcommands.util.Reference;
 
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.natamus.collective.functions.MessageFunctions;
-import com.natamus.enchantingcommands.config.ConfigHandler;
-import com.natamus.enchantingcommands.util.Util;
+import com.serilum.enchantingcommands.config.ConfigHandler;
+import com.serilum.enchantingcommands.util.Util;
 import net.minecraft.ChatFormatting;
 import net.minecraft.commands.CommandBuildContext;
 import net.minecraft.commands.CommandSourceStack;

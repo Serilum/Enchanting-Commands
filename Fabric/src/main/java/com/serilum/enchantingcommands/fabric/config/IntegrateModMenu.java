@@ -1,7 +1,7 @@
-package com.natamus.enchantingcommands.fabric.config;
+package com.serilum.enchantingcommands.fabric.config;
 
 import com.natamus.collective.config.DuskConfig;
-import com.natamus.enchantingcommands.util.Reference;
+import com.serilum.enchantingcommands.util.Reference;
 import com.terraformersmc.modmenu.api.ConfigScreenFactory;
 import com.terraformersmc.modmenu.api.ModMenuApi;
 

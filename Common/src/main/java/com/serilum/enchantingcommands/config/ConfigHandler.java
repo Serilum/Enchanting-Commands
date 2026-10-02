@@ -1,7 +1,7 @@
-package com.natamus.enchantingcommands.config;
+package com.serilum.enchantingcommands.config;
 
 import com.natamus.collective.config.DuskConfig;
-import com.natamus.enchantingcommands.util.Reference;
+import com.serilum.enchantingcommands.util.Reference;
 
 import java.util.Arrays;
 import java.util.HashMap;

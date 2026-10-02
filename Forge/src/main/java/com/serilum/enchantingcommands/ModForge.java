@@ -1,10 +1,10 @@
-package com.natamus.enchantingcommands;
+package com.serilum.enchantingcommands;
 
 import com.natamus.collective.check.RegisterMod;
 import com.natamus.collective.check.ShouldLoadCheck;
-import com.natamus.enchantingcommands.forge.config.IntegrateForgeConfig;
-import com.natamus.enchantingcommands.forge.events.ForgeCommandRegisterEvent;
-import com.natamus.enchantingcommands.util.Reference;
+import com.serilum.enchantingcommands.forge.config.IntegrateForgeConfig;
+import com.serilum.enchantingcommands.forge.events.ForgeCommandRegisterEvent;
+import com.serilum.enchantingcommands.util.Reference;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.ModLoadingContext;

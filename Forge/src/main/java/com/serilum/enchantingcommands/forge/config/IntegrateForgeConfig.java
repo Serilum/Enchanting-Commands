@@ -1,7 +1,7 @@
-package com.natamus.enchantingcommands.forge.config;
+package com.serilum.enchantingcommands.forge.config;
 
 import com.natamus.collective.config.DuskConfig;
-import com.natamus.enchantingcommands.util.Reference;
+import com.serilum.enchantingcommands.util.Reference;
 import net.minecraftforge.client.ConfigScreenHandler;
 import net.minecraftforge.fml.ModLoadingContext;
 

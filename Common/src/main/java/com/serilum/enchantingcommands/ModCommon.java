@@ -1,6 +1,6 @@
-package com.natamus.enchantingcommands;
+package com.serilum.enchantingcommands;
 
-import com.natamus.enchantingcommands.config.ConfigHandler;
+import com.serilum.enchantingcommands.config.ConfigHandler;
 
 public class ModCommon {
 

@@ -1,4 +1,4 @@
-package com.natamus.enchantingcommands.util;
+package com.serilum.enchantingcommands.util;
 
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
