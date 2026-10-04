@@ -6,7 +6,7 @@ logoFile="icon.png"
 
 [[mods]]
 modId="enchantingcommands"
-version="3.7"
+version="3.8"
 displayName="Enchanting Commands"
 displayURL="https://serilum.com/mod/enchanting-commands"
 authors="Serilum"
@@ -22,7 +22,7 @@ If you would like to contribute too, check out https://serilum.com/donate Apprec
 [[dependencies.enchantingcommands]]
     modId="collective"
     mandatory=true
-    versionRange="[8.40,)"
+    versionRange="[8.41,)"
     ordering="NONE"
     side="BOTH"
 

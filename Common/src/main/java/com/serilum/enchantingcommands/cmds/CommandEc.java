@@ -43,7 +43,7 @@ public class CommandEc {
 			}))
 			.then(Commands.literal("enchant")
 			.then(Commands.argument("enchantment", ResourceArgument.resource(commandBuildContext, Registries.ENCHANTMENT))
-			.then(Commands.argument("level", IntegerArgumentType.integer(0, 127))
+			.then(Commands.argument("level", IntegerArgumentType.integer(0, 255))
 			.executes((command) -> {
 				CommandSourceStack source = command.getSource();
 				Entity entity = source.getEntity();
