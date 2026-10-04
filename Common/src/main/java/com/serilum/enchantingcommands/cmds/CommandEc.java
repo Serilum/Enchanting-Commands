@@ -12,14 +12,15 @@ import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
 import net.minecraft.commands.arguments.ResourceArgument;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.nbt.Tag;
+import net.minecraft.nbt.ListTag;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
 
 public class CommandEc {
 	public static void register(CommandDispatcher<CommandSourceStack> dispatcher, CommandBuildContext commandBuildContext) {
@@ -40,7 +41,7 @@ public class CommandEc {
 			}))
 			.then(Commands.literal("enchant")
 			.then(Commands.argument("enchantment", ResourceArgument.resource(commandBuildContext, Registries.ENCHANTMENT))
-			.then(Commands.argument("level", IntegerArgumentType.integer(0, 127))
+			.then(Commands.argument("level", IntegerArgumentType.integer(0, 255))
 			.executes((command) -> {
 				CommandSourceStack source = command.getSource();
 				Entity entity = source.getEntity();
@@ -60,22 +61,21 @@ public class CommandEc {
 					return 0;
 				}
 
-				ItemStack temp = new ItemStack(Item.byId(1));
-				temp.enchant(enchantment, level);
-				String estringtemp = temp.getEnchantmentTags().get(0).toString().split("id:")[1];
+				ResourceLocation enchantmentId = EnchantmentHelper.getEnchantmentId(enchantment);
+				ListTag enchantmentTags = held.getEnchantmentTags();
 
 				boolean removed = false;
-				for (Tag nbt : held.getEnchantmentTags()) {
-					if (estringtemp.equals(nbt.toString().split("id:")[1])) {
-						held.getEnchantmentTags().remove(nbt);
+				for (int i = enchantmentTags.size() - 1; i >= 0; i--) {
+					if (enchantmentId.equals(EnchantmentHelper.getEnchantmentId(enchantmentTags.getCompound(i)))) {
+						enchantmentTags.remove(i);
 						removed = true;
-						break;
 					}
 				}
 
 				String enchantmentname = enchantment.getDescriptionId().replace("enchantment.", "");
 				if (level != 0) {
-					held.enchant(enchantment, level);
+					enchantmentTags.add(EnchantmentHelper.storeEnchantment(enchantmentId, level));
+					held.addTagElement(ItemStack.TAG_ENCH, enchantmentTags);
 					MessageFunctions.sendTranslatableMessage(player, "collective.enchantingcommands.message.enchantmentaddeditem", ChatFormatting.DARK_GREEN, enchantmentname, level);
 				}
 				else if (removed) {
